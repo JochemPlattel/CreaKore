@@ -1,0 +1,5 @@
+package creakore
+
+object Window {
+
+}
