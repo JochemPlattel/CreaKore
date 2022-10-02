@@ -1,7 +1,21 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+import creakore.*
+import org.lwjgl.opengl.GL15.GL_STATIC_DRAW
+import org.lwjgl.opengl.GL15.GL_TRIANGLES
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+val window = Window.create(1280, 720)
+val renderUnit = RenderUnit(GL_STATIC_DRAW, intArrayOf(2, 4))
+fun main() {
+    window.run(::update)
+}
+
+fun update() {
+    colorShader.use()
+    colorShader.setMat4("projection", Matrix4.fromViewport(Vec2.zero, 1f, 1f))
+    val vertices = floatArrayOf(
+        0f, 0f, 0f, 0f, 1f, 1f,
+        1f, 0f, 0f, 1f, 0f, 1f,
+        1f, 1f, 1f, 0f, 0f, 1f
+    )
+    renderUnit.setVertices(vertices)
+    renderUnit.draw(GL_TRIANGLES, 0, 3)
 }

@@ -1,0 +1,3 @@
+package creakore
+
+class Image
